@@ -2,33 +2,10 @@
   <div class="container">
     <div class="main">
       <div id="images-box">
-        <Card class="imageCard">
-          <div style="text-align:center">
-            <h1>Nginx</h1>
-            <Tag :color="randomHexColor()">latest</Tag>
-            <Tag :color="randomHexColor()">1.13</Tag>
-            <Tag :color="randomHexColor()">1.14</Tag>
-            <Tag :color="randomHexColor()">1.15</Tag>
-          </div>
-        </Card>
-        <Card class="imageCard">
-          <div style="text-align:center">
-            <h1>Busybox</h1>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-            <Tag :color="randomHexColor()">test</Tag>
-
-          </div>
-        </Card>
-        <Card class="imageCard" v-for="i in [1,2,3,4,5,6,7,8,9]" :key="i">
+        <Card class="imageCard" v-for="(item, key) in images" :key="key">
           <div class="imageTitle" style="text-align:center">
-            <h1>TestImage</h1>
+            <h1>{{ item.imageName }}</h1>
+            <Tag :color="randomHexColor()" v-for="tag in item.tags" :key="tag">{{ tag }}</Tag>
           </div>
         </Card>
       </div>
@@ -41,10 +18,25 @@ export default {
   name: 'ImagesListCard',
   data() {
     return {
-
+      images: [],
     }
   },
   methods: {
+    getData() {
+      this.tableLoading = true
+      this.$axios.get(this.host + '/v1/images', {})
+      .then(res => {
+        if (res.data.code == 200) {
+          this.images = res.data.data.images
+          this.waterFall()
+        } else {
+          this.$Message.error(res.data.msg)
+        }
+      })
+      .catch(err => {
+        this.$Message.error(err)
+      })
+    },
     randomHexColor() {
       let hex = Math.floor(Math.random() * 16777216).toString(16); //生成ffffff以内16进制数
       while (hex.length < 6) { //while循环判断hex位数，少于6位前面加0凑够6位
@@ -58,13 +50,14 @@ export default {
         height: (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) -60,
       }
     },
-    waterFall(items, gap) {
+    waterFall() {
+      let box = document.getElementById('images-box')
+      let items = box.children
+      if (items.length == 0) return
+      let gap = 10
       let pageWidth = this.getClient().width
-      //console.log(items[0].offsetWidth)
-      //console.log(pageWidth)
       let itemWidth = items[0].offsetWidth
       let columns = parseInt(pageWidth / (itemWidth + gap))
-      //console.log(columns)
       var arr = []
       for (var i = 0; i < items.length; i++) {
           if (i < columns) {
@@ -97,13 +90,10 @@ export default {
               arr[index] = arr[index] + items[i].offsetHeight + gap -31;
           }
       }
-    }
+    },
   },
   mounted() {
-    let box = document.getElementById('images-box')
-    let items = box.children
-    let gap = 10
-    this.waterFall(items, gap)
+    this.getData()
   },
 
 }

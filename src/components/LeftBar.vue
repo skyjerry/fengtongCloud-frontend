@@ -15,7 +15,7 @@
                 <Icon type="ios-filing" />
                 应用控制台
             </template>
-            <MenuItem name="2-1" to="/images">镜像管理</MenuItem>
+            <MenuItem name="2-1" to="/images">镜像列表</MenuItem>
             <MenuItem name="2-2">应用发布</MenuItem>
         </Submenu>
         <Submenu name="3">

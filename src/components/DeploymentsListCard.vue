@@ -12,7 +12,8 @@
           </template>
           <template slot-scope="{ index }" slot="action">
             <Button type="primary" size="small" @click="showScale(index)">伸缩</Button>&nbsp;
-            <Button type="info" size="small" @click="edit(index)">编辑</Button>
+            <Button type="info" size="small" @click="edit(index)">编辑</Button>&nbsp;
+            <Button type="error" size="small" @click="del(index)">删除</Button>
           </template>
         </Table>
       </Card>
@@ -139,6 +140,20 @@ export default {
       this.editModal = true
       this.editIndex = index
       this.editor.set(this.deployments[index].value)
+    },
+    del(index) {
+      this.$axios.post(this.host + '/v1/deployment/' + this.deployments[index].name + '/delete', {})
+      .then(res => {
+        if (res.data.code == 200) {
+          this.$Message.success(res.data.msg)
+        } else {
+          this.$Message.error(res.data.msg)
+        }
+        this.getData()
+      })
+      .catch(err => {
+        this.$Message.error(res.data.msg)
+      })
     },
     deploy() {
       try{
