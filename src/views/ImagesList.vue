@@ -1,31 +1,31 @@
 <template>
   <div class="container">
-    <AdminBase :activeName="'1-1'" :open_names="['1']"></AdminBase>
+    <AdminBase active-name="2-1" :open_names="['2']"></AdminBase>
     <div class="main">
-      <NodesListCard class="nodelistCard"></NodesListCard>
+      <ImagesListCard></ImagesListCard>
     </div>
   </div>
 </template>
 
 <script>
 import AdminBase from '@/components/AdminBase.vue'
-import NodesListCard from '@/components/NodesListCard'
-
+import ImagesListCard from '@/components/ImagesListCard.vue'
 export default {
-  name: 'NodesList',
+  name: 'ImagesList',
   components: {
     AdminBase,
-    NodesListCard
+    ImagesListCard,
   }
 }
 </script>
 
 <style scoped>
-/* body {
-  background-color: #ccc;
-} */
 .main {
   position: relative;
   margin: 60px 0 0 240px;
 }
 </style>
+
+
+
+

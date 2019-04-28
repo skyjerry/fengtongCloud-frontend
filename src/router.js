@@ -28,11 +28,6 @@ export default new Router({
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
-    },
-    {
       path: '/nodes',
       name: 'NodesList',
       component: () => import('./views/NodesList.vue')
@@ -51,6 +46,11 @@ export default new Router({
       path: '/pods',
       name: 'PodsList',
       component: () => import('./views/PodsList.vue')
+    },
+    {
+      path: '/images',
+      name: 'ImagesList',
+      component: () => import('./views/ImagesList.vue')
     },
 
     //路由404

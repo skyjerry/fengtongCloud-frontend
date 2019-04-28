@@ -93,6 +93,7 @@ export default {
           {
             title: '操作',
             slot: 'action',
+            width: '200',
           }
       ],
       editModal: false,

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <AdminBase activeName="1-2"></AdminBase>
+    <AdminBase activeName="1-2" :open_names="['1']"></AdminBase>
     <div class="main">
       <DeploymentsListCard class="deploymentsListCard"></DeploymentsListCard>
     </div>

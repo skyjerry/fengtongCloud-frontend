@@ -1,6 +1,6 @@
 <template>
   <div class="left">
-    <Menu :active-name="activeName" :open-names="['1']" class="menu">
+    <Menu :active-name="activeName" :open-names="open_names" class="menu">
         <Submenu name="1">
             <template slot="title">
                 <Icon type="ios-analytics" />
@@ -13,10 +13,10 @@
         <Submenu name="2">
             <template slot="title">
                 <Icon type="ios-filing" />
-                服务变更
+                应用控制台
             </template>
-            <MenuItem name="2-1">Option 5</MenuItem>
-            <MenuItem name="2-2">Option 6</MenuItem>
+            <MenuItem name="2-1" to="/images">镜像管理</MenuItem>
+            <MenuItem name="2-2">应用发布</MenuItem>
         </Submenu>
         <Submenu name="3">
             <template slot="title">
@@ -41,7 +41,10 @@
 
 export default {
   name: 'LeftBar',
-  props: ['activeName'],
+  props: {
+    activeName: String,
+    open_names: Array,
+  },
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <TopBar></TopBar>
-    <LeftBar :activeName="activeName"></LeftBar>
+    <LeftBar :activeName="activeName" :open_names="open_names" ></LeftBar>
   </div>
 </template>
 
@@ -15,7 +15,10 @@ export default {
     TopBar,
     LeftBar
   },
-  props: ['activeName'],
+  props: {
+    activeName: String,
+    open_names: Array,
+  },
 }
 </script>
 
