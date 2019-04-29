@@ -73,7 +73,7 @@ export default {
           localStorage.setItem('token', res.data.data.access_token)
           localStorage.setItem('expired_at', res.data.data.expired_at)
           this.$Message.success('登录成功')
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/nodes'})
         } else {
           this.$Message.error(res.data.msg)
         }

@@ -52,6 +52,11 @@ export default new Router({
       name: 'ImagesList',
       component: () => import('./views/ImagesList.vue')
     },
+    {
+      path: '/deploy/create',
+      name: 'DeployCreate',
+      component: () => import('./views/DeployCreate.vue')
+    },
 
     //路由404
     {

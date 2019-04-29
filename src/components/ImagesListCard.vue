@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 export default {
   name: 'ImagesListCard',
   data() {
@@ -28,7 +29,13 @@ export default {
       .then(res => {
         if (res.data.code == 200) {
           this.images = res.data.data.images
-          this.waterFall()
+          // setTimeout(() => {
+          //   this.waterFall()
+          // }, 100)
+          this.$nextTick(() =>{
+            this.waterFall()
+          })
+
         } else {
           this.$Message.error(res.data.msg)
         }

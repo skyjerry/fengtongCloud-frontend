@@ -16,7 +16,7 @@
                 应用控制台
             </template>
             <MenuItem name="2-1" to="/images">镜像列表</MenuItem>
-            <MenuItem name="2-2">应用发布</MenuItem>
+            <MenuItem name="2-2" to="/deploy/create">应用发布</MenuItem>
         </Submenu>
         <Submenu name="3">
             <template slot="title">
