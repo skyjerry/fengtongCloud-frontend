@@ -72,7 +72,7 @@ export default {
               items[i].style.top = 0;
               items[i].style.left = (itemWidth + gap) * i + 20 + 'px';
 
-              arr.push(items[i].offsetHeight - 31)
+              arr.push(items[i].offsetHeight)
 
           } else {
               // 其他行
@@ -94,7 +94,7 @@ export default {
               // 5- 修改最小列的高度
               // 最小列的高度 = 当前自己的高度 + 拼接过来的高度 + 间隙的高度
               console.log(items[i].offsetHeight)
-              arr[index] = arr[index] + items[i].offsetHeight + gap -31;
+              arr[index] = arr[index] + items[i].offsetHeight + gap;
           }
       }
     },
